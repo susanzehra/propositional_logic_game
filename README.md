@@ -1,10 +1,13 @@
 # Susan Zehra's Propositional Logic Challenge
 
-A self-contained, browser-based learning game with eight increasingly difficult real-world propositional-logic missions. It is designed for GitHub Pages and requires no server, database, account, or installation.
+A self-contained, browser-based learning game with thirteen increasingly difficult real-world propositional-logic missions. It is designed for GitHub Pages and requires no server, database, account, or installation.
 
 ## Features
 
-- Eight sequential missions covering propositions, negation, conjunction, conditionals, biconditionals, truth tables, logical equivalence, and multi-step inference
+- Thirteen sequential missions covering propositions, negation, conjunction, conditionals, biconditionals, truth tables, logical equivalence, satisfiability, validity, counterexamples, and multi-step inference
+- Two substantial drag-and-drop construction games with distractor tiles
+- Three truth-table missions, culminating in a sixteen-row, four-variable table
+- A three-stage final logic arena combining classification, counterexample construction, and proof assembly
 - Real-world scenarios and a hint for every mission
 - Immediate explanatory feedback and session-only scoring
 - Personalized completion certificate with date and time
