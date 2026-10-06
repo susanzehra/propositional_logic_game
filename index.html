@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An eight-level, real-world propositional logic learning game by Susan Zehra.">
+  <title>Susan Zehra's Propositional Logic Challenge</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Return to challenge start">
+        <span class="brand-mark" aria-hidden="true">P→Q</span>
+        <span>Susan Zehra's<br><strong>Propositional Logic Challenge</strong></span>
+      </a>
+      <div class="status" id="status" hidden>
+        <span id="levelLabel">Mission 1 of 8</span>
+        <span class="score-pill">Score: <strong id="scoreValue">0</strong>/80</span>
+      </div>
+    </header>
+
+    <section class="screen start-screen active" id="startScreen">
+      <div class="hero-copy">
+        <p class="eyebrow">LOGIC LAB • 8 MISSIONS</p>
+        <h1>Can you make the right decision?</h1>
+        <p class="lead">Solve practical logic puzzles involving smart homes, campus events, deliveries, safety systems, and autonomous robots.</p>
+        <div class="mission-preview" aria-label="Challenge topics">
+          <span>Statements</span><span>Negation</span><span>Connectives</span><span>Conditionals</span>
+          <span>Biconditionals</span><span>Truth tables</span><span>Equivalence</span><span>Inference</span>
+        </div>
+      </div>
+      <form class="start-card" id="startForm">
+        <div class="mascot" aria-hidden="true">🤖</div>
+        <h2>Agent check-in</h2>
+        <label for="playerName">Your name</label>
+        <input id="playerName" name="playerName" autocomplete="name" maxlength="60" placeholder="Enter your name" required>
+        <label class="consent-row">
+          <input type="checkbox" id="privacyCheck" required>
+          <span>I understand that my name and progress stay only in this browser session. Nothing is stored or transmitted.</span>
+        </label>
+        <button class="primary-button" type="submit">Begin Mission →</button>
+        <p class="small-note">No account, tracking, or data collection.</p>
+      </form>
+    </section>
+
+    <section class="screen game-screen" id="gameScreen" aria-live="polite">
+      <div class="progress-track" aria-label="Challenge progress"><div id="progressFill"></div></div>
+      <article class="question-card">
+        <div class="question-heading">
+          <div>
+            <p class="eyebrow" id="missionType">MISSION</p>
+            <h1 id="questionTitle">Question title</h1>
+          </div>
+          <div class="difficulty" id="difficulty">●○○○</div>
+        </div>
+        <div class="scenario" id="scenario"></div>
+        <div class="symbols" id="symbols" hidden></div>
+        <div class="answer-area" id="answerArea"></div>
+        <div class="feedback" id="feedback" hidden></div>
+        <div class="actions">
+          <button class="secondary-button" id="hintButton" type="button">💡 Show hint</button>
+          <button class="primary-button" id="checkButton" type="button">Check answer</button>
+          <button class="primary-button" id="nextButton" type="button" hidden>Next mission →</button>
+        </div>
+        <div class="hint-box" id="hintBox" hidden></div>
+      </article>
+    </section>
+
+    <section class="screen certificate-screen" id="certificateScreen">
+      <div class="confetti" aria-hidden="true"></div>
+      <article class="certificate" id="certificate">
+        <div class="certificate-badge" aria-hidden="true">✓</div>
+        <p class="eyebrow">CHALLENGE COMPLETE</p>
+        <h1>Certificate of Logic Mastery</h1>
+        <p>This certifies that</p>
+        <h2 id="certificateName">Student Name</h2>
+        <p>successfully completed all eight missions in</p>
+        <h3>Susan Zehra's Propositional Logic Challenge</h3>
+        <div class="certificate-stats">
+          <div><span>Final score</span><strong id="certificateScore">80 / 80</strong></div>
+          <div><span>Completed</span><strong id="certificateDate">Date and time</strong></div>
+        </div>
+        <p class="signature">Susan Zehra</p>
+        <p class="signature-label">Challenge Creator</p>
+      </article>
+      <div class="certificate-actions">
+        <button class="secondary-button" id="restartButton" type="button">Play again</button>
+        <button class="primary-button" id="printButton" type="button">Print / Save as PDF</button>
+      </div>
+    </section>
+  </main>
+  <footer>Copyright © 2026 Susan Zehra. All rights reserved.</footer>
+  <script src="script.js"></script>
+</body>
+</html>
