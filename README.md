@@ -10,6 +10,7 @@ A self-contained, browser-based learning game with thirteen increasingly difficu
 - A three-stage final logic arena combining classification, counterexample construction, and proof assembly
 - Real-world scenarios and a hint for every mission
 - Immediate explanatory feedback and session-only scoring
+- Dependency-based proof validation that accepts any logically valid ordering
 - Personalized completion certificate with date and time
 - Print / Save as PDF support
 - Responsive design for computers, tablets, and phones

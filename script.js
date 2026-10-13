@@ -127,6 +127,7 @@ const questions = [
   {
     type: "build",
     buildStyle: "proof",
+    validator: "proofChain",
     label: "MISSION 10 • BIOSECURITY VAULT",
     title: "Assemble the proof chain",
     difficulty: 4,
@@ -547,9 +548,34 @@ function answerIsComplete(q) {
 
 function answerIsCorrect(q) {
   if (q.type === "truth") return q.answer.every((value, i) => selection[i] === value);
+  if (q.type === "build" && q.validator === "proofChain") return proofChainIsValid(selection, q.answer);
   if (q.type === "build") return selection.length === q.answer.length && q.answer.every((value, i) => selection[i].text === value);
   if (q.type === "multi") return selection.length === q.answer.length && q.answer.every((value) => selection.includes(value));
   return selection === q.answer;
+}
+
+function proofChainIsValid(selectedTiles, requiredLines) {
+  const lines = selectedTiles.map((tile) => tile.text);
+
+  // The proof must contain every required line exactly once and no distractors.
+  if (lines.length !== requiredLines.length) return false;
+  if (new Set(lines).size !== lines.length) return false;
+  if (!requiredLines.every((line) => lines.includes(line))) return false;
+
+  const position = Object.fromEntries(lines.map((line, index) => [line, index]));
+  const appearsBefore = (premise, conclusion) => position[premise] < position[conclusion];
+
+  // A derived statement must appear after all lines needed to justify it.
+  return (
+    appearsBefore("p — Given", "q — Modus ponens") &&
+    appearsBefore("p → q — Given", "q — Modus ponens") &&
+    appearsBefore("q — Modus ponens", "q ∧ r — Conjunction") &&
+    appearsBefore("r — Given", "q ∧ r — Conjunction") &&
+    appearsBefore("q ∧ r — Conjunction", "s — Modus ponens") &&
+    appearsBefore("(q ∧ r) → s — Given", "s — Modus ponens") &&
+    appearsBefore("s — Modus ponens", "t — Modus ponens") &&
+    appearsBefore("s → t — Given", "t — Modus ponens")
+  );
 }
 
 function markAnswer(q) {
@@ -583,7 +609,9 @@ function checkAnswer() {
   if (!answerIsCorrect(q)) {
     feedback.hidden = false;
     feedback.className = "feedback error";
-    feedback.innerHTML = "Not quite. Recheck the exact meaning of each connective, then try again.";
+    feedback.innerHTML = q.validator === "proofChain"
+      ? "Not quite. Include only the nine required lines, and place every conclusion after the facts and rule that justify it."
+      : "Not quite. Recheck the exact meaning of each connective, then try again.";
     return;
   }
   const earned = Math.max(6, 10 - (attempts - 1) * 2 - (hintUsed ? 2 : 0));
